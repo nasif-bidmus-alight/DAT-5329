@@ -1,0 +1,7 @@
+Changes has been applied in CAWIPSQL9009 > Compass_CORE.dbo.Payer_Subnetwork:
+
+Update the following fields in CAWIPSQL9009 > Compass_CORE.dbo.Payer_Subnetwork:
+
+SET Payer_SubNetwork_Key = 3319 where Payer_SubNetwork_Key = 2801 and PPC = 5413
+
+Updated fields in templates.Template_Provider_INN and templates.Template_Plan
