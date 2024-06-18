@@ -1,0 +1,12 @@
+
+Data Clean Up Request: Hilton - Outreach Raw Data
+
+reporter: August Oxenford
+@Nasif Bidmus  - Please work with @Scott Kolberg as needed to remove data from the Outreach.dbo.OutreachRawData data for Hilton - ER ID 5685
+
+SELECT *
+  FROM [Outreach].[dbo].[OutreachRawData]
+  WHERE [DerivedEmployerID] = 5685
+  ORDER BY [DateLoaded] DESC
+
+Target Due Date: 07/08/2024
