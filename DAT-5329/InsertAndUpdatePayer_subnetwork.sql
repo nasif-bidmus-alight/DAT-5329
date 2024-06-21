@@ -49,3 +49,30 @@ BEGIN CATCH
     ROLLBACK TRANSACTION;
     PRINT 'Error occurred: ' + ERROR_MESSAGE();
 END CATCH;
+
+
+-- the above code did not work in PROD1 because data already existed there
+-- the below solution was implemented after talking to jimmy
+
+
+
+
+update  Compass_CORE.dbo.Payer_Subnetwork  set PPC = 5413
+WHERE Payer_SubNetwork_Key in (3319)
+and PPC is null ;
+
+update  Compass_CORE.dbo.Payer_Subnetwork
+set PPC = NUll
+WHERE Payer_SubNetwork_Key = 2801
+and PPC = 5413 ;
+
+
+
+UPDATE Compass_CORE.dbo.Payer_Subnetwork 
+SET 
+    Updated = GETDATE(), -- Sets the Updated column to the current datetime
+    UpdatedBy = 'A1104181', -- Sets the UpdatedBy column to the specified value
+    UpdateNote = 'PPC was Null, updated to 5413' -- Sets the UpdateNote column to the specified text
+WHERE 
+    Payer_SubNetwork_Key = 3319 -- The specific key you want to update
+    AND PPC = 5413; -- Ensures only rows with PPC = 5413 are updated
