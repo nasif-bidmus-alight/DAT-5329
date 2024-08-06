@@ -1,0 +1,990 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2024 10:54:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ORD1-BGS5BY3"
+  DTS:CreatorName="HEWITT-NA\A1005242"
+  DTS:DTSID="{27145F4D-3EFB-4621-9B16-9D4082DC0141}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StanleyBlackDecker"
+  DTS:PackageType="5"
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{E973BFCB-292A-407F-A1E5-4D500A05E402}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{720B1848-AF20-4158-9CA8-16EBA27C4E44}"
+      DTS:ObjectName="cm-sql.database.windows.net.CM_SQLdb.sqladmin">
+      <DTS:PropertyExpression
+        DTS:Name="Password">@[User::Password]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="UserName">@[User::UserName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=cm-sql.database.windows.net;User ID=sqladmin;Initial Catalog=CM_SQLdb;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVmxWQKR6cEG/bJF+CNBeTAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAsqAQrub605NKGHSlRqkhSv6usAyKLMxKaWzdRCe3ntAAAAAAOgAAAAAIAACAAAABo7pUMFo7Lazedb6o9V7HjkSx3SNZwgicq0CJuo+9t0CAAAAAGvqLaw6IIyUHqi71vEDhRVyChCIKCQ9CWsTvCbsdh8kAAAABoVCyv+JRMf6oh5cPV4VfKmfXLEL3WOmp6/XQAVTVvRUr7iu2MuPlwEk1IwY5zXMSS42o1mB9DjHT8F66ZBviy</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{EE32AD17-352C-4DDE-976E-CA669B7F85E2}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::LocalFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x007C_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\StanleyBlack&amp;Decker\stanleyblackanddecker_incentive_20240801_20240801182856.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Branch_Code"
+              DTS:DTSID="{66BD0354-B721-42A1-B470-271D384C496A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Program_Type"
+              DTS:DTSID="{A92D1F9B-0BE9-4EF5-A267-215CD2C9C01C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_First_Name"
+              DTS:DTSID="{7B57B2D8-389D-4AB1-A8DC-F04CA860DEFF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_Last_Name"
+              DTS:DTSID="{D7F5025E-8577-4C04-A8AC-38545DFF94F7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_Gender"
+              DTS:DTSID="{18C9D763-58E5-4124-B952-9E00E804CA4B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_Relationship"
+              DTS:DTSID="{87E0CF21-A03D-40E0-8EEB-5A0CB6C8B12B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Member_Birth_Date"
+              DTS:DTSID="{DEB34D52-F600-4BCE-A1F8-5ADAD717C1BE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Survey_Completion_Date"
+              DTS:DTSID="{FA3A6FF1-E763-44F5-A6C1-3539BCC0255E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Employee SSN"
+              DTS:DTSID="{9520237C-E927-4F21-8C76-978C35FCE8F9}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{AC69BA5A-58FB-4F00-AFE4-4EEAB457190E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT((DT_WSTR,30)GETDATE(),23)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateSent">
+      <DTS:VariableValue
+        DTS:DataType="8">2024-08-01 18:28:56.695</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{63DBFB51-0AE3-448D-B05B-7D6BC8446AA0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FTP">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B8C1363C-09BC-4DDC-B547-E2763B1EE7AF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::OutputPath]+ @[User::OutputTitle]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\StanleyBlack&amp;Decker\stanleyblackanddecker_incentive_20240801_20240801182856.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6E43664D-9C90-44E9-A82D-43BAB8E0D902}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::LocalFile]+ &quot;.pgp&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFilePGP">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\StanleyBlack&amp;Decker\stanleyblackanddecker_incentive_20240801_20240801182856.csv.pgp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{88F51B4B-56A0-4D4F-AF41-D1724B46D06F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputFileName">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CA8FB80A-9A12-47C5-80A6-D8F25E9D4687}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\cphs-fad-01\\NetworkFileshare\\Reporting\\Consumer Medical\\LegacyCMReports\\StanleyBlack&amp;Decker\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\StanleyBlack&amp;Decker\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7830619B-9501-4F27-ADF1-1FB8D038354B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;stanleyblackanddecker_incentive_&quot;&#xA;+ (DT_STR, 4, 1252) YEAR(DATEADD(&quot;MM&quot;, 0, GETDATE()))&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) MONTH(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DAY(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2)&#xA;+ &quot;_&quot;&#xA;+ (DT_STR, 4, 1252) YEAR(DATEADD(&quot;MM&quot;, 0, GETDATE()))&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) MONTH(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DAY(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;HH&quot;, GETDATE()), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;MI&quot;, GETDATE()), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DATEPART(&quot;SS&quot;, GETDATE()), 2)&#xA;+ &quot;.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputTitle">
+      <DTS:VariableValue
+        DTS:DataType="8">stanleyblackanddecker_incentive_20240801_20240801182856.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{773B4870-EE70-406A-91E1-B20A724C3AC0}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;s7aUa02PC90&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Password">
+      <DTS:VariableValue
+        DTS:DataType="8">s7aUa02PC90</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C0B2FED6-146A-4D43-9333-F6C420637F5D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;sqladmin&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="UserName">
+      <DTS:VariableValue
+        DTS:DataType="8">sqladmin</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F185D0F8-9247-4907-8C71-F599F003B868}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Derived Column"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Survey_Completion_Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Survey_Completion_Date"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[Member_Birth_Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Member_Birth_Date"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Survey_Completion_Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Survey_Completion_Date]"
+                      name="Formatted_Survey_Completion_Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,4)[YEAR](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]}) + "/" + [RIGHT]("0" + (DT_WSTR,2)[MONTH](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]}),2) + "/" + [RIGHT]("0" + (DT_WSTR,2)[DAY](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]}),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,4)YEAR(Survey_Completion_Date) + "/" + RIGHT("0" + (DT_WSTR,2)MONTH(Survey_Completion_Date),2) + "/" + RIGHT("0" + (DT_WSTR,2)DAY(Survey_Completion_Date),2)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Member_Birth_Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Member_Birth_Date]"
+                      name="Formatted_Member_Birth_Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,4)[YEAR](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]}) + "/" + [RIGHT]("0" + (DT_WSTR,2)[MONTH](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]}),2) + "/" + [RIGHT]("0" + (DT_WSTR,2)[DAY](#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]}),2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,4)YEAR(Member_Birth_Date) + "/" + RIGHT("0" + (DT_WSTR,2)MONTH(Member_Birth_Date),2) + "/" + RIGHT("0" + (DT_WSTR,2)DAY(Member_Birth_Date),2)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Extract Data from source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Extract Data from source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    
+	vp.[work site] AS Branch_Code,
+    vp.[Custom Field 2] AS Program_Type,
+	vp.[First Name] AS Member_First_Name,
+	vp.[Last Name] AS Member_Last_Name,
+    CASE
+        WHEN vp.Gender = 'Female' THEN 'F'
+        WHEN vp.Gender = 'Male' THEN 'M'
+        ELSE vp.Gender
+    END AS Member_Gender,
+    CASE
+        WHEN vp.Relationship = 'Employee' THEN 'EE'
+        WHEN vp.Relationship = 'Spouse/Partner' THEN 'SP'
+        WHEN vp.Relationship = 'Dependent' THEN 'D'
+        ELSE vp.Relationship
+    END AS Member_Relationship,
+    CONVERT(varchar, vp.[Birth Date],101) AS Member_Birth_Date,
+	CONVERT(varchar, Survey_Completion_Date,101) AS Survey_Completion_Date,
+    vp.[Employee SSN]
+FROM [mart].[vw_Combined2_Summary_Einstein] vcse
+JOIN dbo.service_request sr ON sr.Service_Request_SF_ID = vcse.Service_Request_ID
+JOIN [mart].[vw_Person] vp ON vp.Person_SF_ID = vcse.Contact_Record_ID
+WHERE Survey_Completion_Date IS NOT NULL
+    AND Product_Type = 'SDS'
+    AND Client_Code = 'sbd'
+    AND Eligibile_For_Incentive = 'Yes'
+    AND Data_Type = 'Case'
+    AND Intake_is_Engaged = 'Engaged'
+    AND Survey_Completion_Date &gt;= DATEADD(month, DATEDIFF(month, 0, GETDATE()) - 1, 0)
+    AND Survey_Completion_Date &lt; DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)
+ORDER BY Survey_Completion_Date DESC;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Extract Data from source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Branch_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Branch_Code]"
+                      length="200"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Branch_Code]"
+                      name="Branch_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Program_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Program_Type]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Program_Type]"
+                      name="Program_Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_First_Name]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_First_Name]"
+                      name="Member_First_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Last_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Last_Name]"
+                      length="150"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Last_Name]"
+                      name="Member_Last_Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Gender]"
+                      length="25"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Gender]"
+                      name="Member_Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Relationship]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Relationship]"
+                      length="14"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Relationship]"
+                      name="Member_Relationship"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Birth_Date]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Birth_Date]"
+                      name="Member_Birth_Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Survey_Completion_Date]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Survey_Completion_Date]"
+                      name="Survey_Completion_Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Employee SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Employee SSN]"
+                      length="12"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Employee SSN]"
+                      name="Employee SSN"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Branch_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Branch_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Program_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Program_Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_First_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Last_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Last_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Relationship]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Relationship" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Member_Birth_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Member_Birth_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Survey_Completion_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Survey_Completion_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[Employee SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      name="Employee SSN" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Branch_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Branch_Code]"
+                      name="Branch_Code" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Program_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Program_Type]"
+                      name="Program_Type" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_First_Name]"
+                      name="Member_First_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Last_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Last_Name]"
+                      name="Member_Last_Name" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Gender]"
+                      name="Member_Gender" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Relationship]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Relationship]"
+                      name="Member_Relationship" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Birth_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Member_Birth_Date]"
+                      name="Member_Birth_Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Survey_Completion_Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Survey_Completion_Date]"
+                      name="Survey_Completion_Date" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Employee SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="12"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[Employee SSN]"
+                      name="Employee SSN" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Branch_Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Branch_Code"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Branch_Code]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Branch_Code]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Program_Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Program_Type"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Program_Type]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Program_Type]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Member_First_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Member_First_Name"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_First_Name]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_First_Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Member_Last_Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Member_Last_Name"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Last_Name]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Last_Name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Member_Gender]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="Member_Gender"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Gender]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Gender]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Member_Relationship]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="Member_Relationship"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Relationship]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Member_Relationship]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Employee SSN]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="12"
+                      cachedName="Employee SSN"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Employee SSN]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[Employee SSN]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Formatted_Survey_Completion_Date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Formatted_Survey_Completion_Date"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Survey_Completion_Date]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Survey_Completion_Date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Formatted_Member_Birth_Date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Formatted_Member_Birth_Date"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Birth_Date]"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[Formatted_Member_Birth_Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Branch_Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Branch_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Program_Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Program_Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_First_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_First_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Last_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Last_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Relationship]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Member_Relationship" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Member_Birth_Date]"
+                      dataType="date"
+                      name="Member_Birth_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Survey_Completion_Date]"
+                      dataType="date"
+                      name="Survey_Completion_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Employee SSN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Employee SSN" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="247,32" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,47"
+          Id="Package\Data Flow Task\Flat File Destination"
+          TopLeft="252,605" />
+        <NodeLayout
+          Size="310,126"
+          Id="Package\Data Flow Task\Extract Data from source"
+          TopLeft="244,68" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="245,345" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="399,194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77,151"
+              Start="0,0"
+              End="-77,143.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,71.5"
+                    Point2="0,75.5"
+                    Point3="-4,75.5" />
+                  <mssgle:LineSegment
+                    End="-73,75.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-73,75.5"
+                    Point2="-77,75.5"
+                    Point3="-77,79.5" />
+                  <mssgle:LineSegment
+                    End="-77,143.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="322,387">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16,218"
+              Start="0,0"
+              End="16,210.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,105"
+                    Point2="0,109"
+                    Point3="4,109" />
+                  <mssgle:LineSegment
+                    End="12,109" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12,109"
+                    Point2="16,109"
+                    Point3="16,113" />
+                  <mssgle:LineSegment
+                    End="16,210.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Extract Data from source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

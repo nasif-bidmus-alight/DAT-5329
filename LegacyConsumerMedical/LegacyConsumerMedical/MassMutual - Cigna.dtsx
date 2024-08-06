@@ -1,0 +1,1235 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/18/2024 1:11:56 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ORD1-BC7PHR3"
+  DTS:CreatorName="HEWITT-NA\A1066590"
+  DTS:DTSID="{5F7E4A7B-AE8F-4BA4-BF6D-3F9DBCAF1BD9}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="MassMutual - Cigna"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{7B63512E-B7D8-47DC-A640-21BE3C599877}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5F74B0BA-2E8F-4352-89D6-2EFD49ADC462}"
+      DTS:ObjectName="cm-sql.database.windows.net.CM_SQLdb.sqladmin">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=cm-sql.database.windows.net;User ID=sqladmin;Initial Catalog=CM_SQLdb;Provider=MSOLEDBSQL.1;Persist Security Info=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL+"
+      DTS:DTSID="{13C8F1A6-C8F8-4DDF-B12E-C6BF7713C684}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <ConnectionManager
+          ConnectionString="ExcelFilePath=\\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna - REP-18315.xlsx;FormatType=Auto;Recalculate=False;RetainSameConnection=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MassMutual - Cigna]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{608A1444-CFC6-4B93-BA1B-4EA199A80BF7}"
+      DTS:ObjectName="MassMutual - Cigna">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="\\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna - REP-18315.xlsx" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{6024B456-60BA-41E5-AA28-1158521DFA6E}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtprelay3.hewitt.com;UseWindowsAuthentication=True;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{454BAC90-7585-435B-BE2A-44F07FE40BFF}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;MassMutual - Cigna&quot; +RIGHT( &quot;0&quot; + (DT_STR, 4, 1252) Year(DATEADD(&quot;MM&quot;, 0, GETDATE())), 4)+ RIGHT( &quot;0&quot; + (DT_STR, 2, 1252) MONTH(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2)+ RIGHT( &quot;0&quot; + (DT_STR, 2, 1252) DAY(DATEADD(&quot;MM&quot;, 0, GETDATE())), 2) +&quot;.xlsx&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">MassMutual - Cigna20240604.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F6702D1F-BBAF-4E61-9F77-794BC21D3CAA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::OutputPath] +  @[User::FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna\MassMutual - Cigna20240604.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5ED9A3C7-4CE6-4EC2-9FEA-F5AC2F73BF22}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;Attached is this week's SDS file for MassMutual - Cigna. &#xA;&#xA;This file can also be located here : &quot; +@[User::LocalFile]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MessageText">
+      <DTS:VariableValue
+        DTS:DataType="8">Attached is this week's SDS file for MassMutual - Cigna. 
+
+This file can also be located here : \\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna\MassMutual - Cigna20240604.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9A8AEA5-B8BF-4AC2-8F34-EFFAC029B368}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E9E531A8-55EC-4816-AC92-580042CAF79D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\cm-shares-az.cmr2.local\\BizX Requests\\SDS Weekly\\MassMutual - Cigna - REP-18315.xlsx\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourcePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cm-shares-az.cmr2.local\BizX Requests\SDS Weekly\MassMutual - Cigna - REP-18315.xlsx\</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy SDS File"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="File System Task"
+      DTS:DTSID="{643BCE6C-BA27-4848-B3A5-B6B33C72400B}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.FileSystemTask.FileSystemTask, Microsoft.SqlServer.FileSystemTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy SDS File"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOverwriteDestFile="True"
+          TaskSourcePath="{608A1444-CFC6-4B93-BA1B-4EA199A80BF7}"
+          TaskDestinationPath="User::LocalFile"
+          TaskIsDestinationVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Create SDS File"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4F161E1A-3BB2-48DC-92D8-24B5CA05547D}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create SDS File"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Create SDS File\Excel Destination Plus"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Inserts data into Excel worksheet.; COZYROC LLC; SSIS+; © 2006-2018 COZYROC LLC; All Rights Reserved; http://www.cozyroc.com/;0"
+              description="Inserts data into Excel worksheet."
+              name="Excel Destination Plus"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Null"
+                  description="Inserts data into Excel worksheet."
+                  name="ComponentObject"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.String"
+                  description="Destination Excel worksheet."
+                  expressionType="Notify"
+                  name="Worksheet"
+                  typeConverter="CozyRoc.SqlServer.SSIS.TableEditor, CozyRoc.SSISPlus.UI.2012, Version=1.0.0.0, Culture=Neutral, PublicKeyToken=16cf490bb80c34ea">Sheet1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies first row contains column names."
+                  name="FirstRowHasColumnName">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies destination first column. The value is 1-based."
+                  expressionType="Notify"
+                  name="StartColumn">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies destination first row. The value is 1-based."
+                  expressionType="Notify"
+                  name="StartRow">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies to save Excel workbook at end."
+                  name="SaveAtEnd">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies input type."
+                  name="InputType"
+                  typeConverter="CozyRoc.SqlServer.SSIS.ExcelDestination+InputTypes, CozyRoc.SSISPlus.2012, Version=1.0.0.0, Culture=neutral, PublicKeyToken=16cf490bb80c34ea">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how to handle existing data."
+                  name="ExistingData"
+                  typeConverter="CozyRoc.SqlServer.SSIS.ExcelDestination+ExistingDataTypes, CozyRoc.SSISPlus.2012, Version=1.0.0.0, Culture=neutral, PublicKeyToken=16cf490bb80c34ea">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">CozyRoc.SqlServer.SSIS.ExcelDestination, CozyRoc.SSISPlus.2012, Version=1.0.0.0, Culture=neutral, PublicKeyToken=16cf490bb80c34ea</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create SDS File\Excel Destination Plus.Connections[EXCEL+]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 1]"
+                  description="COZYROC Excel Connection Manager"
+                  name="EXCEL+" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Plus Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Employer: Account Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Participant: Employer: Account Name"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employer: Account Name]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Full Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="101"
+                      cachedName="Participant: Full Name"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Full Name]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[SDS Enrollment For (if not Participant)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="101"
+                      cachedName="SDS Enrollment For (if not Participant)"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Enrollment For (if not Participant)]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant Role]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="Participant Role"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant Role]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Insurance Carrier]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Insurance Carrier"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance Carrier]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Insurance ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Insurance ID"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance ID]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Employee ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Participant: Employee ID"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employee ID]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Birthdate]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="Participant: Birthdate"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Birthdate]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Gender]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Participant: Gender"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Gender]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Primary Phone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Participant: Primary Phone"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Primary Phone]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Participant: Email"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Email]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Mailing Street]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="Participant: Mailing Street"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Street]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Mailing City]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Participant: Mailing City"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing City]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Mailing State/Province]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Participant: Mailing State/Province"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing State/Province]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Participant: Mailing Zip/Postal Code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="54"
+                      cachedName="Participant: Mailing Zip/Postal Code"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Zip/Postal Code]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Service Request Diagnosis: Diagnosis Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="Service Request Diagnosis: Diagnosis Name"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Diagnosis Name]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Service Request Diagnosis: Joints Affected]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Service Request Diagnosis: Joints Affected"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Joints Affected]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[SDS Type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="SDS Type"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Type]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Date/Time Opened]"
+                      cachedDataType="wstr"
+                      cachedLength="4000"
+                      cachedName="Date/Time Opened"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date/Time Opened]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Service Request Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Service Request Status"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Status]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Has the penalty been waived?]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Has the penalty been waived?"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Has the penalty been waived?]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Is Participant enrollment required?]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Is Participant enrollment required?"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is Participant enrollment required?]" />
+                    <inputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input].Columns[Survey Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Survey Status"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Survey Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Create SDS File\Excel Destination Plus.Outputs[Excel Destination Plus Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Plus Error Output"
+                  synchronousInputId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Outputs[Excel Destination Plus Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create SDS File\Excel Destination Plus.Outputs[Excel Destination Plus Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create SDS File\Excel Destination Plus.Outputs[Excel Destination Plus Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create SDS File\Excel Destination Plus.Outputs[Excel Destination Plus Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Create SDS File\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @SP_Start DATETIME = DATEADD(yy,DATEDIFF(yy,0,GETDATE())-1,0); -- first date of last year
+DECLARE @Sp_End DATETIME = GETDATE();
+
+EXEC mart.sp_SDS_Refreshables_Main
+			@Client_Name = 'MassMutual'
+			,@Insurance_Carrier_Like_List = '%Cigna%'   --if you don't want a filter can leave this out our set it to 'ALL CARRIERS'
+			,@Search_Start_Date =    @SP_Start			--if you want all-time data, take out the date filters
+			,@Search_End_Date =		 @Sp_End</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Create SDS File\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employer: Account Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Employer: Account Name]"
+                      length="150"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employer: Account Name]"
+                      name="Participant: Employer: Account Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Full Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Full Name]"
+                      length="101"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Full Name]"
+                      name="Participant: Full Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Enrollment For (if not Participant)]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SDS Enrollment For (if not Participant)]"
+                      length="101"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Enrollment For (if not Participant)]"
+                      name="SDS Enrollment For (if not Participant)"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant Role]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant Role]"
+                      length="6"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant Role]"
+                      name="Participant Role"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance Carrier]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Insurance Carrier]"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance Carrier]"
+                      name="Insurance Carrier"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Insurance ID]"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Insurance ID]"
+                      name="Insurance ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employee ID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Employee ID]"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Employee ID]"
+                      name="Participant: Employee ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Birthdate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Birthdate]"
+                      length="4000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Birthdate]"
+                      name="Participant: Birthdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Gender]"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Gender]"
+                      name="Participant: Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Primary Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Primary Phone]"
+                      length="8000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Primary Phone]"
+                      name="Participant: Primary Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Email]"
+                      length="100"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Email]"
+                      name="Participant: Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Street]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing Street]"
+                      length="8000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Street]"
+                      name="Participant: Mailing Street"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing City]"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing City]"
+                      name="Participant: Mailing City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing State/Province]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing State/Province]"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing State/Province]"
+                      name="Participant: Mailing State/Province"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Zip/Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing Zip/Postal Code]"
+                      length="54"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Participant: Mailing Zip/Postal Code]"
+                      name="Participant: Mailing Zip/Postal Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Diagnosis Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Diagnosis: Diagnosis Name]"
+                      length="500"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Diagnosis Name]"
+                      name="Service Request Diagnosis: Diagnosis Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Joints Affected]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Diagnosis: Joints Affected]"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Diagnosis: Joints Affected]"
+                      name="Service Request Diagnosis: Joints Affected"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SDS Type]"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[SDS Type]"
+                      name="SDS Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date/Time Opened]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date/Time Opened]"
+                      length="4000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date/Time Opened]"
+                      name="Date/Time Opened"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Status]"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Service Request Status]"
+                      name="Service Request Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Has the penalty been waived?]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Has the penalty been waived?]"
+                      length="20"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Has the penalty been waived?]"
+                      name="Has the penalty been waived?"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is Participant enrollment required?]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is Participant enrollment required?]"
+                      length="20"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Is Participant enrollment required?]"
+                      name="Is Participant enrollment required?"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Survey Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Survey Status]"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].Columns[Survey Status]"
+                      name="Survey Status"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Employer: Account Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Participant: Employer: Account Name" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Full Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="Participant: Full Name" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SDS Enrollment For (if not Participant)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      name="SDS Enrollment For (if not Participant)" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant Role]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="Participant Role" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Insurance Carrier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Insurance Carrier" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Insurance ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Insurance ID" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Employee ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Participant: Employee ID" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Birthdate]"
+                      dataType="wstr"
+                      length="4000"
+                      name="Participant: Birthdate" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Participant: Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Primary Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Participant: Primary Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Participant: Email" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing Street]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="Participant: Mailing Street" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Participant: Mailing City" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing State/Province]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Participant: Mailing State/Province" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Participant: Mailing Zip/Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="54"
+                      name="Participant: Mailing Zip/Postal Code" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Diagnosis: Diagnosis Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="Service Request Diagnosis: Diagnosis Name" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Diagnosis: Joints Affected]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Service Request Diagnosis: Joints Affected" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SDS Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="SDS Type" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date/Time Opened]"
+                      dataType="wstr"
+                      length="4000"
+                      name="Date/Time Opened" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Service Request Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Service Request Status" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Has the penalty been waived?]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Has the penalty been waived?" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Is Participant enrollment required?]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Is Participant enrollment required?" />
+                    <externalMetadataColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Survey Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Survey Status" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Employer: Account Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Employer: Account Name]"
+                      name="Participant: Employer: Account Name" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Full Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Full Name]"
+                      name="Participant: Full Name" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SDS Enrollment For (if not Participant)]"
+                      codePage="1252"
+                      dataType="str"
+                      length="101"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SDS Enrollment For (if not Participant)]"
+                      name="SDS Enrollment For (if not Participant)" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant Role]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant Role]"
+                      name="Participant Role" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Insurance Carrier]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Insurance Carrier]"
+                      name="Insurance Carrier" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Insurance ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Insurance ID]"
+                      name="Insurance ID" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Employee ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Employee ID]"
+                      name="Participant: Employee ID" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Birthdate]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Birthdate]"
+                      name="Participant: Birthdate" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Gender]"
+                      name="Participant: Gender" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Primary Phone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Primary Phone]"
+                      name="Participant: Primary Phone" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Email]"
+                      name="Participant: Email" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing Street]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing Street]"
+                      name="Participant: Mailing Street" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing City]"
+                      name="Participant: Mailing City" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing State/Province]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing State/Province]"
+                      name="Participant: Mailing State/Province" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing Zip/Postal Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="54"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Participant: Mailing Zip/Postal Code]"
+                      name="Participant: Mailing Zip/Postal Code" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Diagnosis: Diagnosis Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Diagnosis: Diagnosis Name]"
+                      name="Service Request Diagnosis: Diagnosis Name" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Diagnosis: Joints Affected]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Diagnosis: Joints Affected]"
+                      name="Service Request Diagnosis: Joints Affected" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SDS Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SDS Type]"
+                      name="SDS Type" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date/Time Opened]"
+                      dataType="wstr"
+                      length="4000"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date/Time Opened]"
+                      name="Date/Time Opened" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Service Request Status]"
+                      name="Service Request Status" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Has the penalty been waived?]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Has the penalty been waived?]"
+                      name="Has the penalty been waived?" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is Participant enrollment required?]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Is Participant enrollment required?]"
+                      name="Is Participant enrollment required?" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Survey Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Survey Status]"
+                      name="Survey Status" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Create SDS File.Paths[OLE DB Source Output]"
+              endId="Package\Create SDS File\Excel Destination Plus.Inputs[Excel Destination Plus Input]"
+              name="OLE DB Source Output"
+              startId="Package\Create SDS File\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send Mail Task"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:DelayValidation="True"
+      DTS:Description="Send Mail Task"
+      DTS:DTSID="{20546531-6134-47CC-B7F2-04FE6ABC3C21}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send Mail Task"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FileAttachments">@[User::LocalFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SendMailTask:SendMailTaskData
+          SendMailTask:SMTPServer="{6024B456-60BA-41E5-AA28-1158521DFA6E}"
+          SendMailTask:From="connor.stahl@alight.com"
+          SendMailTask:To="beth.norton@alight.com"
+          SendMailTask:CC="eileen.hines@alight.com;connor.stahl@alight.com;jenelle.rodriguez@alight.com;amy.nieves@alight.com"
+          SendMailTask:Subject="MassMutual - Cigna SDS File"
+          SendMailTask:MessageSourceType="Variable"
+          SendMailTask:MessageSource="User::MessageText" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask">
+          <SendMailTask:Attachments
+            SendMailTask:FileName="\\cm-shares-az.cmr2.local\Shared\BizX Requests\SDS Weekly\MassMutual - Cigna\MassMutual - Cigna20240604.xlsx" />
+        </SendMailTask:SendMailTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{84384B7B-534E-46C0-BBC9-F3FF587262D5}"
+      DTS:From="Package\Create SDS File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy SDS File" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D09E909C-2D3A-4FAF-A366-51AE50BB0385}"
+      DTS:From="Package\Copy SDS File"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Send Mail Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Copy SDS File"
+          TopLeft="319.428576868408,113.176472175493" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Create SDS File"
+          TopLeft="322.857148355367,31.8117651520303" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Send Mail Task"
+          TopLeft="317.142862543768,202.494120486962" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="395.142862611887,73.4117651520303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.7647070234622"
+              Start="0,0"
+              End="0,32.2647070234622">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.2647070234622" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="391.485719706088,154.776472175493">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47.7176483114693"
+              Start="0,0"
+              End="0,40.2176483114693">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.2176483114693" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Create SDS File">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Create SDS File\OLE DB Source"
+          TopLeft="243.428575574135,39.7647064400379" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\Create SDS File\Excel Destination Plus"
+          TopLeft="342.285720114805,206.164708773735" />
+        <EdgeLayout
+          Id="Package\Create SDS File.Paths[OLE DB Source Output]"
+          TopLeft="318.628575574135,81.3647064400379">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114.85714454067,124.800002333697"
+              Start="0,0"
+              End="114.85714454067,117.300002333697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.4000011668486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,58.4000011668486"
+                    Point2="0,62.4000011668486"
+                    Point3="4,62.4000011668486" />
+                  <mssgle:LineSegment
+                    End="110.85714454067,62.4000011668486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="110.85714454067,62.4000011668486"
+                    Point2="114.85714454067,62.4000011668486"
+                    Point3="114.85714454067,66.4000011668486" />
+                  <mssgle:LineSegment
+                    End="114.85714454067,117.300002333697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Create SDS File\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

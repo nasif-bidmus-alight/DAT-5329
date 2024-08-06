@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="cm-sql.database.windows.net.CM_SQLdb.sqladmin"
+  DTS:DTSID="{5F74B0BA-2E8F-4352-89D6-2EFD49ADC462}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=cm-sql.database.windows.net;User ID=sqladmin;Initial Catalog=CM_SQLdb;Provider=MSOLEDBSQL.1;Persist Security Info=True;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVmxWQKR6cEG/bJF+CNBeTAAAAAACAAAAAAAQZgAAAAEAACAAAAD2pyQ2Lb6U3O46Cv/dKbPj+zbheyDYp692wOmMnAsbNwAAAAAOgAAAAAIAACAAAAB0k0YAz/0XaYt1ycKBHAmNFKAa2FB/K6sOqmOwpliF8YAAAABXPn3WrNLGCOtTHpvD5CegM6HiLpBOeXR37rYjBlDg95Q1Qsdv5g/JUENFxBLjRs+5p9vcuOrOS3FYSZ8kymJDtm7pSS3+ELDr3kbjpon8vnqwZ4QBttq6FrX6aYCTMooH28HKLH7QTm2muxm8P9UWN8fo1h7RMiAHIfK+39HfVUAAAADUOfRxxHs+BHhjbqP4eV511bLkzA+mCmwb0euQMWRcihvN3F9erZphjbeUR8CiuJpW0VOfnaaNVSA2dClcodpj</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
