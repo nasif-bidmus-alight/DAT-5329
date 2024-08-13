@@ -1,4 +1,4 @@
-	SELECT
+SELECT
     
 	vp.[work site] AS Branch_Code,
     vp.[Custom Field 2] AS Program_Type,
@@ -30,4 +30,9 @@ WHERE Survey_Completion_Date IS NOT NULL
 	and Participant_Is_Patient = 1
     AND Survey_Completion_Date >= DATEADD(month, DATEDIFF(month, 0, GETDATE()) - 1, 0)
     AND Survey_Completion_Date < DATEADD(day, 1, DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0))
+	or (vp.[Employee SSN] = '404216968' AND Product_Type = 'SDS'
+    AND Client_Code = 'sbd'
+    AND Eligibile_For_Incentive = 'Yes'
+    AND Data_Type = 'Case'
+    AND Intake_is_Engaged = 'Engaged')
 ORDER BY Survey_Completion_Date DESC;
