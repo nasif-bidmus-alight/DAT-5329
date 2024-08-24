@@ -1,0 +1,1242 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2024 10:54:07 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ORD1-BGS5BY3"
+  DTS:CreatorName="HEWITT-NA\A1005242"
+  DTS:DTSID="{D74D1C81-7E59-46C2-A850-C41F6BBEA497}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.6020.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Mastercard"
+  DTS:PackageType="5"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{76D8B273-6E91-438C-9C9F-F04CDA93C52C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1163FBFD-37B7-4862-B6FA-26E0486FAD96}"
+      DTS:ObjectName="cm-sql.database.windows.net.CM_SQLdb.sqladmin">
+      <DTS:PropertyExpression
+        DTS:Name="Password">@[User::Password]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="UserName">@[User::UserName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Retain="True"
+          DTS:ConnectionString="Data Source=cm-sql.database.windows.net;User ID=sqladmin;Initial Catalog=CM_SQLdb;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAVmxWQKR6cEG/bJF+CNBeTAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA+v+uPZaiTlKzammsHyre5/qllQqrv+bMMslt5NAEGxAAAAAAOgAAAAAIAACAAAABPeyC57+qw1WpP8U8gH1vzn3w+5XWNHI88TEutFYPiISAAAABWGWV5gRGgXDj3juo21/ms/5RDgXx94IjxfLCj9/LNSkAAAADny6saBVvH+KXQiLQxghBUAPEXcXg25vYG5qMpMhIrfuhC47LwRbhwk5Q+a5vk+1aJ/OuIk36K95l92062exew</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CPHS-SQLPROD02.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E4D325AC-FE0B-4432-9A48-2FD6E71C2A78}"
+      DTS:ObjectName="CPHS-SQLPROD02.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CPHS-SQLPROD02;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{63B323ED-9443-410B-9015-7FEB9F349D8E}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::LocalFile]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x002C_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\Mastercard\MasterCard_ConsumerMedical_5067_Rewards_Event_08222024.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SequenceNumber"
+              DTS:DTSID="{75F2F656-C50C-49E7-A926-E50D330164EE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SponsorID"
+              DTS:DTSID="{7976B6A5-9E81-4877-B7DD-995BC1706446}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EmployeeID"
+              DTS:DTSID="{FB9938B6-42E1-4624-9307-ABDF9C5A79C3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EventCode"
+              DTS:DTSID="{2FEF60BC-8F02-48C5-A192-60D80920F7EE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="EventDate"
+              DTS:DTSID="{4280CA22-33EE-4DD6-B9A5-88CC2C170BF1}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{17FC54BA-C14E-410E-901A-C0D35A5F7094}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT((DT_WSTR,30)GETDATE(),23)"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateSent">
+      <DTS:VariableValue
+        DTS:DataType="8">2024-08-22 07:24:42.394</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87B0E12A-1C12-48E4-8F36-F7381C187F56}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FTP">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E6DFFB5-5AD4-4977-9EF1-CECB494DC56F}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::OutputPath]+ @[User::OutputTitle]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\Mastercard\MasterCard_ConsumerMedical_5067_Rewards_Event_08222024.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3271444D-FE76-4C0D-9ABF-DBA5B3D3FE80}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::LocalFile]+ &quot;.pgp&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LocalFilePGP">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\Mastercard\MasterCard_ConsumerMedical_5067_Rewards_Event_08222024.csv.pgp</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{85FEC359-3278-460E-BF38-583028166D3E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputFileName">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E92FB76F-5D57-4AF3-A128-767F9D1346E9}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\\\\cphs-fad-01\\NetworkFileshare\\Reporting\\Consumer Medical\\LegacyCMReports\\Mastercard\\&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\Mastercard\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F999996C-D33C-4388-985A-9984E0103D32}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;MasterCard_ConsumerMedical_5067_Rewards_Event_&quot;&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) MONTH(GETDATE()), 2)&#xA;+ RIGHT(&quot;0&quot; + (DT_STR, 2, 1252) DAY(GETDATE()), 2)&#xA;+ (DT_STR, 4, 1252) YEAR(GETDATE())&#xA;+ &quot;.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputTitle">
+      <DTS:VariableValue
+        DTS:DataType="8">MasterCard_ConsumerMedical_5067_Rewards_Event_08222024.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0CECBE70-8D03-4408-BA17-A4E59A463FC7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;s7aUa02PC90&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Password">
+      <DTS:VariableValue
+        DTS:DataType="8">s7aUa02PC90</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9FBD23A-A771-4092-B817-5089ADD9CFEA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessedData">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2C9B83E9-4610-493B-B290-894F4CD78D75}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;sqladmin&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="UserName">
+      <DTS:VariableValue
+        DTS:DataType="8">sqladmin</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E89322E8-62C9-42C1-88BB-F7307A685B7E}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Extract Data from source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Extract Data from source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">WITH DistinctChat AS
+(
+    SELECT
+        [Activity_ID],
+        [Activity_SF_ID],
+        [Activity_Type],
+        [Assigned_To_SF_ID],
+        [Related_To_ID],
+        [Related_To_Type],
+        pt.[Person_SF_ID],
+        [Participant_Name],
+        [Company_Code],
+        [Client_Name],
+        [Task_Subject],
+        pt.[Call_Type],
+        [Created_Date],
+        CASE
+            WHEN vp.Relationship = 'Spouse/Partner' THEN CONCAT(vp.[Employee ID], 'S')
+            ELSE vp.[Employee ID]
+        END AS [Employee ID],
+        [User_Name],
+        [Interaction_Owner_Role],
+        [Role_Flag],
+        ROW_NUMBER() OVER (PARTITION BY vp.[Employee ID] ORDER BY pt.[Created_Date]) AS RowNum
+    FROM [mart].[vw_Participant_Interactions] pt
+    JOIN [mart].[vw_Person] vp ON vp.Person_SF_ID = pt.Person_SF_ID
+    WHERE [Company_Code] = 'MASTERCARD'
+    AND Activity_Type NOT IN ('Direct Message')
+    AND Task_Subject LIKE '%chat%'
+    AND [Created_Date] &gt;= DATEFROMPARTS(YEAR(GETDATE()), 1, 1)
+    AND [Employee ID] IS NOT NULL
+),
+DistinctdirectMessage AS
+(
+    SELECT
+        [Activity_ID],
+        [Activity_SF_ID],
+        [Activity_Type],
+        [Assigned_To_SF_ID],
+        [Related_To_ID],
+        [Related_To_Type],
+        pt.[Person_SF_ID],
+        [Participant_Name],
+        [Company_Code],
+        [Client_Name],
+        [Task_Subject],
+        [Call_Type],
+        [Created_Date],
+        CASE
+            WHEN vp.Relationship = 'Spouse/Partner' THEN CONCAT(vp.[Employee ID], 'S')
+            ELSE vp.[Employee ID]
+        END AS [Employee ID],
+        ROW_NUMBER() OVER (PARTITION BY vp.[Employee ID] ORDER BY pt.[Created_Date]) AS RowNum
+    FROM [mart].[vw_Participant_Interactions] pt
+    JOIN [mart].[vw_Person] vp ON vp.Person_SF_ID = pt.Person_SF_ID
+    WHERE [Company_Code] = 'MASTERCARD'
+    AND Activity_Type = 'Direct Message'
+    AND [Created_Date] &gt;= DATEFROMPARTS(YEAR(GETDATE()), 1, 1)
+    AND [Employee ID] IS NOT NULL
+),
+DistinctCalltask AS
+(
+    SELECT
+        [Activity_ID],
+        [Activity_SF_ID],
+        [Activity_Type],
+        [Assigned_To_SF_ID],
+        [Related_To_ID],
+        [Related_To_Type],
+        pt.[Person_SF_ID],
+        [Participant_Name],
+        [Company_Code],
+        [Client_Name],
+        [Task_Subject],
+        pt.[Call_Type],
+        t.[Completed_Date],
+        CASE
+            WHEN vp.Relationship = 'Spouse/Partner' THEN CONCAT(vp.[Employee ID], 'S')
+            ELSE vp.[Employee ID]
+        END AS [Employee ID],
+        ROW_NUMBER() OVER (PARTITION BY vp.[Employee ID] ORDER BY t.[Completed_Date]) AS RowNum
+    FROM [mart].[vw_Participant_Interactions] pt
+    JOIN [mart].[vw_Person] vp ON vp.Person_SF_ID = pt.Person_SF_ID
+    JOIN [dbo].[task] t ON t.Task_ID = pt.Activity_ID
+    WHERE [Company_Code] = 'MASTERCARD'
+    AND Activity_Type NOT IN ('Direct Message')
+    AND t.Completed_Date &gt;= DATEFROMPARTS(YEAR(GETDATE()), 1, 1)
+    AND t.Completed_Date IS NOT NULL
+    AND [Employee ID] IS NOT NULL
+    AND pt.Call_Type = 'Inbound'
+),
+Distinctwebinars AS
+(
+    SELECT
+        [data_source],
+        [Intake Date],
+        [Event Date],
+        CASE
+            WHEN [Caller Relationship] = 'Spouse/Partner' THEN CONCAT([Employee ID], 'S')
+            ELSE [Employee ID]
+        END AS [Employee ID],
+        ROW_NUMBER() OVER (PARTITION BY [Employee ID] ORDER BY [Intake Date]) AS RowNum,
+        [data_type],
+        [Client ID],
+        [Company],
+        [Company Code],
+        [Service Request Type]
+    FROM [mart].[vw_Combined2_Webinars]
+    WHERE [Company Code] = 'mastercard'
+    AND [Intake is Engaged] = 'Engaged'
+    AND [Event Date] &gt;= DATEFROMPARTS(YEAR(GETDATE()), 1, 1)
+    AND [Intake Date] IS NOT NULL
+    AND data_type = 'Service Request'
+    AND [Employee ID] IS NOT NULL
+    AND [Client ID] NOT LIKE '00Q%'
+)
+-- Combine the results from all four CTEs
+SELECT
+    ROW_NUMBER() OVER (ORDER BY [Employee ID]) AS SequenceNumber,
+    '5067' AS SponsorID,
+    [Employee ID] AS EmployeeID,
+    'CONMEDCY' AS EventCode,
+    CONVERT(VARCHAR(8), [Created_Date], 112) AS EventDate
+FROM DistinctChat
+WHERE RowNum = 1
+UNION ALL
+SELECT
+    ROW_NUMBER() OVER (ORDER BY [Employee ID]) AS SequenceNumber,
+    '5067' AS SponsorID,
+    [Employee ID] AS EmployeeID,
+    'CONMEDCY' AS EventCode,
+    CONVERT(VARCHAR(8), [Created_Date], 112) AS EventDate
+FROM DistinctdirectMessage
+WHERE RowNum = 1
+UNION ALL
+SELECT
+    ROW_NUMBER() OVER (ORDER BY [Employee ID]) AS SequenceNumber,
+    '5067' AS SponsorID,
+    [Employee ID] AS EmployeeID,
+    'CONMEDCY' AS EventCode,
+    CONVERT(VARCHAR(8), [Completed_Date], 112) AS EventDate
+FROM DistinctCalltask
+WHERE RowNum = 1
+UNION ALL
+SELECT
+    ROW_NUMBER() OVER (ORDER BY [Employee ID]) AS SequenceNumber,
+    '5067' AS SponsorID,
+    [Employee ID] AS EmployeeID,
+    'CONMEDCY' AS EventCode,
+    CONVERT(VARCHAR(8), [Intake Date], 112) AS EventDate
+FROM Distinctwebinars
+WHERE RowNum = 1;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Extract Data from source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  connectionManagerRefId="Package.ConnectionManagers[cm-sql.database.windows.net.CM_SQLdb.sqladmin]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SequenceNumber]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[SequenceNumber]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SequenceNumber]"
+                      name="SequenceNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SponsorID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[SponsorID]"
+                      length="4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SponsorID]"
+                      name="SponsorID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      length="256"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EventCode]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventCode]"
+                      name="EventCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EventDate]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventDate]"
+                      name="EventDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[SequenceNumber]"
+                      dataType="i8"
+                      name="SequenceNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[SponsorID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="SponsorID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EventCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="EventCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].ExternalColumns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="EventDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[SequenceNumber]"
+                      dataType="i8"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[SequenceNumber]"
+                      name="SequenceNumber" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[SponsorID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[SponsorID]"
+                      name="SponsorID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EmployeeID]"
+                      name="EmployeeID" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EventCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EventCode]"
+                      name="EventCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[EventDate]"
+                      name="EventDate" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Flat File Destination"
+              componentClassID="{8DA75FED-1B7C-407D-B2AD-2B24209CCCA4}"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[SequenceNumber]"
+                      cachedDataType="i8"
+                      cachedName="SequenceNumber"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SequenceNumber]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SequenceNumber]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[SponsorID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="SponsorID"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SponsorID]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[SponsorID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[EmployeeID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[EventCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="EventCode"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EventCode]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[EventDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="EventDate"
+                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EventDate]"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SequenceNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SequenceNumber" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SponsorID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SponsorID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EventCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EventCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EventDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Lookup"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[MasterCardProcessedData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[MasterCardProcessedData]) [refTable]
+where [refTable].[EmployeeID] = ? and [refTable].[EventDate] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="EmployeeID" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="EventDate" dataType="DT_STR" length="8" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EmployeeID]};#{Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CPHS-SQLPROD02.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[CPHS-SQLPROD02.Stage]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[EmployeeID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="EmployeeID"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EmployeeID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">EmployeeID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[EventCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="EventCode"
+                      lineageId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output].Columns[EventCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">EventDate</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EmployeeID]"
+                      name="EmployeeID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">EmployeeID</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="8"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EventDate]"
+                      name="EventDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">EventDate</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Destination"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[MasterCardProcessedData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CPHS-SQLPROD02.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[CPHS-SQLPROD02.Stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EmployeeID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="EmployeeID"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EmployeeID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EventDate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="EventDate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EventDate]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[EventDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmployeeID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="EmployeeID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EventDate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="EventDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
+              endId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\Extract Data from source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="276,375" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Data Flow Task\Flat File Destination"
+          TopLeft="131,458" />
+        <NodeLayout
+          Size="310,126"
+          Id="Package\Data Flow Task\Extract Data from source"
+          TopLeft="169,97" />
+        <NodeLayout
+          Size="307,95"
+          Id="Package\Data Flow Task\Lookup"
+          TopLeft="167,279" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="322.25,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
+          TopLeft="320.5,374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-103.5,84"
+              Start="0,0"
+              End="-103.5,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="-4,42" />
+                  <mssgle:LineSegment
+                    End="-99.5,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-99.5,42"
+                    Point2="-103.5,42"
+                    Point3="-103.5,46" />
+                  <mssgle:LineSegment
+                    End="-103.5,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-107.55638671875,47,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="240,649" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="370.333333333333,374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-44.8333333333333,275"
+              Start="0,0"
+              End="-44.8333333333333,267.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.855476344783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,106.855476344783"
+                    Point2="0,110.855476344783"
+                    Point3="-4,110.855476344783" />
+                  <mssgle:LineSegment
+                    End="-40.8333333333333,110.855476344783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40.8333333333333,110.855476344783"
+                    Point2="-44.8333333333333,110.855476344783"
+                    Point3="-44.8333333333333,114.855476344783" />
+                  <mssgle:LineSegment
+                    End="-44.8333333333333,267.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-70.6080533854167,115.855476344783,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Extract Data from source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[MasterCardProcessedData]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
