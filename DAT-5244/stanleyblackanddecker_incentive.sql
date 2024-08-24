@@ -35,4 +35,5 @@ WHERE Survey_Completion_Date IS NOT NULL
     AND Eligibile_For_Incentive = 'Yes'
     AND Data_Type = 'Case'
     AND Intake_is_Engaged = 'Engaged')
+    
 ORDER BY Survey_Completion_Date DESC;
