@@ -18,8 +18,8 @@ SELECT
         WHEN vcse.SDS_Conditon = 'Knee' THEN 'WCM' + LEFT(vcse.Joints_Affected, 1) + 'KNE'
         ELSE 'WCM' + vcse.SDS_Conditon
     END AS Type_Of_BD_Program_Code_Completed,
-    FORMAT(sr.SDS_Req_Date, 'yyyy.MM.dd') AS [Program_Benefit Qualifier_Date],
-    FORMAT(DATEADD(YEAR, 2, sr.SDS_Req_Date), 'yyyy.MM.dd') AS [Program_Benefit Expiry_Date]
+    FORMAT(CAST(DATEADD(HOUR, 5, sr.SDS_Req_Date) AS DATE), 'yyyy.MM.dd') as [Program_Benefit Qualifier_Date],
+    FORMAT(DATEADD(YEAR, 2, DATEADD(HOUR, 5, sr.SDS_Req_Date)), 'yyyy.MM.dd') AS [Program_Benefit Expiry_Date]
 FROM
     [mart].[vw_Combined2_Summary_Einstein] vcse
 JOIN

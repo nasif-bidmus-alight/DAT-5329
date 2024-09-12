@@ -1,0 +1,16 @@
+waiting on ---------- feedback from @Stephen Nonis following question from Janini: an you please confirm in re the Mastercard rewards file that only one activity should be only reported per program year? or should all activity be reported?
+completed ------------ sql
+completed  -------------Active batch schudle
+completed ------------ssis transfer to local : \\cphs-fad-01\NetworkFileshare\Reporting\Consumer Medical\LegacyCMReports\wellsfargo
+completed -----------MFT2 setup to /VirginPulse_Shared-svc/VirginPulse_Shared-svc/Outbound/Mastercard
+
+new jira created for 
+sprint 17 dat-5641
+sprint 18 5642 -- assigned back to janina  statues in code review
+main jira is dat-4960
+
+
+mft2 configuration: host: usnc.mft.alight.com
+                  path: /VirginPulse_Shared-svc/VirginPulse_Shared-svc/Outbound/Mastercard
+                  used host: mft2-ssh-int.hewitt.com
+                  used pass: ws+Wy@5NHsVt%V4N
